@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import "./right-side.style.scss";
 import AlertsPanel from '../AlertsPanel/alerts-panel.component';
-import { AlertState } from "../../States/AlertState/alert-state";
+
+import useGlobalState from '../../Store/index';
 
 const RightSide = () => {
 
-    const { addAlert, removeAlert } = useContext(AlertState);
+    const [globalState, globalDispatch] = useGlobalState();
 
     useEffect(() => {
         console.log("----Right Side initialize-----");
@@ -14,7 +15,22 @@ const RightSide = () => {
     return (
         <div className="left-side box">
             <h1>Right Side</h1>
-            <AlertsPanel/>
+            <div>
+                <h1>global Counter</h1>
+                <p>{globalState.counter}</p>
+                <button type="button" onClick={() => globalDispatch({
+                    type:'INC',
+                    payload:1
+                })}>
+                    +1 to global
+                </button>
+                <button type="button" onClick={() => globalDispatch({
+                    type:'DEC',
+                    payload:1
+                })}>
+                    -1 to global
+                </button>
+            </div>
         </div>
 
     );

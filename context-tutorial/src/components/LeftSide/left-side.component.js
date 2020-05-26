@@ -1,20 +1,38 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./left-side.style.scss";
-import AlertsPanel from '../AlertsPanel/alerts-panel.component';
-import { AlertState } from "../../States/AlertState/alert-state";
+import useGlobalState from '../../Store/index';
 
 const LeftSide = () => {
 
-    const { addAlert, removeAlert } = useContext(AlertState);
+    const [globalState, globalDispatch] = useGlobalState();
 
     useEffect(() => {
-        console.log("----Left Side initialize-----");
+        console.log("----Left Side on init-----");
     }, []);
+
+    useEffect(() => {
+        console.log("----Left Side on globalState change-----");
+    }, [globalState]);
 
     return (
         <div className="left-side box">
             <h1>Left Side</h1>
-            <AlertsPanel/>
+            <div>
+                <h1>global Counter</h1>
+                <p>{globalState.counter}</p>
+                <button type="button" onClick={() => globalDispatch({
+                    type:'INC',
+                    payload:1
+                })}>
+                    +1 to global
+                </button>
+                <button type="button" onClick={() => globalDispatch({
+                    type:'DEC',
+                    payload:1
+                })}>
+                   -1 to global
+                </button>
+            </div>
         </div>
 
     );
