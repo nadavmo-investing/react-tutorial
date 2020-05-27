@@ -20,13 +20,13 @@ const LeftSide = () => {
             <div>
                 <h1>global Counter</h1>
                 <p>{globalState.counter}</p>
-                <button type="button" onClick={() => globalDispatch({
+                <button type="button" onClick={() => globalDispatch(globalState,{
                     type:'INC',
                     payload:1
                 })}>
                     +1 to global
                 </button>
-                <button type="button" onClick={() => globalDispatch({
+                <button type="button" onClick={() => globalDispatch(globalState,{
                     type:'DEC',
                     payload:1
                 })}>

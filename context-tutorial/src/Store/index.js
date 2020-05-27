@@ -6,16 +6,14 @@ const initialState = {
     counter: 0
 };
 
-const reducer = function(action){
+const reducer = function(state,action){
         switch (action.type) {
             case "INC":
-                this.setState({ counter: actions.incrementCounter(this.state, action.payload)} );
-                break;
+                return { counter: actions.incrementCounter(state, action.payload)} ;
             case "DEC":
-                this.setState({ counter: actions.decrementCounter(this.state, action.payload)} );
-                break;
+               return { counter: actions.decrementCounter(state, action.payload)} ;
             default:
-                this.setState({ counter: this.state.counter } );
+                return { counter: state.counter } ;
         }
     }
 

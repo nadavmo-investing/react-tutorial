@@ -21,7 +21,9 @@ function useCustom(React) {
 const useGlobalHook = (React, initialState, reducerFunction) => {
     const store = { state: initialState, listeners: [] };
     store.setState = setState.bind(store);
-    store.dispatch = reducerFunction.bind(store);
+    store.dispatch = function(state,action){
+        this.setState(reducerFunction(state,action));
+    }.bind(store);
     return useCustom.bind(store, React);
 };
 
