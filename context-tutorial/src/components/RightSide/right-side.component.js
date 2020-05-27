@@ -31,6 +31,7 @@ const RightSide = () => {
                     -1 to global
                 </button>
             </div>
+            <AlertsPanel></AlertsPanel>
         </div>
 
     );
